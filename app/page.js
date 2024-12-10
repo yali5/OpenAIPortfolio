@@ -290,7 +290,7 @@ export default function Home() {
               </ul>
             </div>
             <form onSubmit={submitForm} className="chat-message">
-              <input type="text" placeholder="Hey Yassaha, what skills are you best at?"
+              <input type="text" placeholder="Ask any questions here."
               value={messageInput} onChange={e => setMessageInput(e.target.value)}
               />
               <button className="button black">Send</button>
