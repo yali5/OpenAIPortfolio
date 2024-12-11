@@ -1,7 +1,11 @@
 import { OpenAIClient } from '@azure/openai';
 import { AzureKeyCredential } from '@azure/core-auth';
 import { NextResponse } from 'next/server';
+const bodyParser = require("body-parser");
+const jsonParser = bodyParser.json();
 import OpenAI from "openai";
+import express from 'express';
+import cors from 'cors';
 
 const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
 const apiKey = process.env.AZURE_OPENAI_API_KEY;
@@ -11,11 +15,14 @@ export async function POST(req){
 
     const { messages } = await req.json();
 
+    console.log("Request JSON parsed:", messages);
+
     const openai = new OpenAI({
         apiKey: process.env.AZURE_OPENAI_API_KEY,
     });
     const app = express();
-    app.use(bodyParser.json());
+    return app.use(bodyParser.json());
+
     app.use(cors());
     app.post("/chat",async (req,res)=>{
         const {prompt} = req.body
