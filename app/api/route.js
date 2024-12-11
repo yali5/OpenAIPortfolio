@@ -33,13 +33,13 @@ export async function POST(req){
     console.log("Azure OpenAI client initialized:", openai); //Error logging failure. Initialisation error confirmed
 
     // Add system-level context to the messages
-    messages.unshift({
-        role: 'system',
-        content: `You are PortfolionLLM, answering only questions based on the resume provided.
-Resume: ${DATA_RESUME}
+   // messages.unshift({
+    //    role: 'system',
+     //   content: `You are PortfolionLLM, answering only questions based on the resume provided.
+//Resume: ${DATA_RESUME}
 
-Help users learn more about Yassaha from his resume.`
-    });
+//Help users learn more about Yassaha from his resume.`
+//    });
 
 try {
     console.log("Preparing to send API request..."); // Check for API call to Azure is successful. Success
