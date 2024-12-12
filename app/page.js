@@ -30,7 +30,7 @@ export default function Home() {
       }
     ).then(res => res.json());
 
-  setMessages([...newMessages, { role: 'systems', content: apiMessage.message }]);
+  setMessages([...newMessages, { role: 'system', content: apiMessage.message }]);
   }
 
   const toggleMobileMenu = () => {
@@ -158,54 +158,15 @@ export default function Home() {
           <article>
             <figure>
               <div>
-                <img src="./imgs/workplace-1.jpg" alt="Workplace 1 - Three Rivers District Council" width="100%" />
+                <img src="./imgs/workplace-5.jpg" alt="Workplace 5 - SSI Schaefer" width="100%" />
                 <figcaption>
-                  Workplace - Three Rivers District Council
+                  Workplace - SSI Schaefer
                 </figcaption>
               </div>
             </figure>
-            <h3>IT Deployment Technician</h3>
-            <div>May 2016 - May 2016</div>
-            <p>- Support and action the deployment of new computers and windows 7. </p>
-          </article>
-          <article>
-            <figure>
-              <div>
-                <img src="./imgs/workplace-2.jpg" alt="Workplace 2 - Ford Motor Company" width="100%" />
-                <figcaption>
-                  Workplace - Ford Motor Company
-                </figcaption>
-              </div>
-            </figure>
-            <h3>IT Site Management BA</h3>
-            <div>April 2017 - August 2018</div>
-            <p>The role is mostly business related (90%) with a small technical element (10%). I act as an active member of the Dunton Site management team, providing local on-site IT support to onsite customers, supporting local projects. Maintain communications, incident response and local IT security.</p>
-          </article>
-          <article>
-            <figure>
-              <div>
-                <img src="./imgs/workplace-2.jpg" alt="Workplace 2 - Ford Motor Company" width="100%" />
-                <figcaption>
-                  Workplace - Ford Motor Company
-                </figcaption>
-              </div>
-            </figure>
-            <h3>IT Project Manager</h3>
-            <div>August 2018 - September 2021</div>
-            <p>Responsible for managing IT project(s) and programmes within Europe to successful conclusion (France Nanterre Office relocation, ePrime office renewal, ePrime new build, Daventry WLAN & LAN refresh, Dagenham LAN refresh)</p>
-          </article>
-          <article>
-            <figure>
-              <div>
-                <img src="./imgs/workplace-3.jpg" alt="Workplace 3 - Ford Credit Europe" width="100%" />
-                <figcaption>
-                  Workplace - Ford Credit Europe
-                </figcaption>
-              </div>
-            </figure>
-            <h3>Software Developer</h3>
-            <div>August 2018 - September 2021</div>
-            <p>Responsible for managing IT project(s) and programmes within Europe to successful conclusion (France Nanterre Office relocation, ePrime office renewal, ePrime new build, Daventry WLAN & LAN refresh, Dagenham LAN refresh</p>
+            <h3>IT Logistics Consultant</h3>
+            <div>November 2023 - May 2024</div>
+            <p>Working on WAMAS application(WMS) in order to provide customisation required by end customer via customer workshops, requests and development.</p>
           </article>
           <article>
             <figure>
@@ -220,21 +181,68 @@ export default function Home() {
             <div>December 2022 - November 2023</div>
             <p> Working as a freelance consultant in order to provide Network engineer related tasks such as tracking and deracking tasks along with deskside support escalations. For while I looked for a new role.</p>
           </article>
-                  <article>
+          <article>
             <figure>
               <div>
-                <img src="./imgs/workplace-5.jpg" alt="Workplace 5 - SSI Schaefer" width="100%" />
+                <img src="./imgs/workplace-3.jpg" alt="Workplace 3 - Ford Credit Europe" width="100%" />
                 <figcaption>
-                  Workplace - SSI SCHAEFER
+                  Workplace - Ford Credit Europe
                 </figcaption>
               </div>
             </figure>
-            <h3>CS IT Logistics Consultant</h3>
-            <div>November 2023 - May 2024</div>
-            <p> SME for customer, creation of change requests and support software development</p>
-          </article>				
+            <h3>Software Developer</h3>
+            <div>August 2018 - September 2021</div>
+            <p>Coding a vehicle leasing software application. The role largely comprimised of upolding agile ceremonies, and revolved around SFA authentication and end-point connections</p>
+          </article>
         </div>
       </section>
+      <section className="work-experience container two">
+  <div className="jobs">
+  <article>
+      <figure>
+        <div>
+          <img src="./imgs/workplace-2.jpg" alt="Ford Motor Company office" width="100%" />
+          <figcaption>
+            Workplace - Ford Motor Company
+          </figcaption>
+        </div>
+      </figure>
+      <h3>IT Project Manager</h3>
+      <time>August 2018 - September 2021</time>
+      <p>
+        Managed IT projects across Europe, including office relocations, WLAN/LAN refreshes, and new infrastructure builds.
+      </p>
+    </article>
+    <article>
+      <figure>
+        <div>
+          <img src="./imgs/workplace-2.jpg" alt="Ford Motor Company office" width="100%" />
+          <figcaption>
+            Workplace - Ford Motor Company
+          </figcaption>
+        </div>
+      </figure>
+      <h3>IT Site Management BA</h3>
+      <time>April 2017 - August 2018</time>
+      <p>
+        Acted as an active member of the Dunton Site management team, providing IT support, maintaining communications, and overseeing local IT security.
+      </p>
+    </article>
+    <article>
+      <figure>
+        <div>
+          <img src="./imgs/workplace-1.jpg" alt="Three Rivers District Council office" width="100%" />
+          <figcaption>
+            Workplace - Three Rivers District Council
+          </figcaption>
+        </div>
+      </figure>
+      <h3>IT Deployment Technician</h3>
+      <time>May 2016</time>
+      <p>Supported the deployment of new computers and Windows 7.</p>
+    </article>
+  </div>
+</section>
       <section id="projects" className="bento container">
         <h2>
           <small>

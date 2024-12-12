@@ -46,7 +46,7 @@ export async function POST(req) {
             apiKey: apiKey,
             }); //changed client to openai, changed to credential, added apiVersion, changed endpoint, lots of changes here dependant on version, ApiKey or Token auth
 
-        console.log("Azure OpenAI client initialized:", client);
+        console.log("Client initialized:", client);
 
         // Send the request to the Azure OpenAI API
         console.log("Preparing to send API request...");
