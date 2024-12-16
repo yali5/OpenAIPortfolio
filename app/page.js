@@ -33,6 +33,46 @@ export default function Home() {
   setMessages([...newMessages, { role: 'system', content: apiMessage.message }]);
   }
 
+  const [isListening, SetIsListening] = useState(false);
+
+  const startListening = () => {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      alert("Speech recognition not supported in this browser. Try Chrome.");
+      return;
+    }
+
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+
+    recognition.onstart = () => {
+      setIsListening(true);
+      console.log("Voice recognition started...");
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setMessageInput(transcript); // Populate the message input
+      console.log("Recognized speech:", transcript);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error:", event.error);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+      console.log("Voice recognition stopped.");
+    };
+
+    recognition.start();
+  };
+
+
+
   const toggleMobileMenu = () => {
     setMenuOpen(!menuOpen);
   }
@@ -280,7 +320,7 @@ export default function Home() {
         </h2>
         <div className="chatbot-blue">
           <div className="chat-info">
-            <h3>Azure AI Chatbot</h3>
+            <h3>OpenAI Chatbot</h3>
             <p>I've put together a chatbot here which knows all my skills, work experience and has a copy of my CV/Resume. You can use it to ask questions about me to get a better idea of who I am and what I've done.</p>
             <p>You can also download my resume here if you want to take a look at it.  I'm currently looking for new opportunities so if you have a project you think I'd be a good fit for, please get in touch!</p>
             <a href="./C.V_Yassaha_August_2024.pdf" className="button black">Download Resume</a>
@@ -288,20 +328,36 @@ export default function Home() {
           <div className="chat-box">
             <div className="scroll-area">
               <ul id="chat-log">
-                {messages.map((message, index) => (
+                {messages.map((message, index) => {
+                  console.log("Rendering message:", message.content);
+                  return (
                   <li key={index} className={`${message.role}`}>
                     <span className={`avatar ${message.role}`}>
                     {message.role === 'user' ? 'You' : 'AI'} </span>
-                    <div className="message">{message.content}</div>
+                    <div className="message"
+                    dangerouslySetInnerHTML={{
+                    __html: message.content,
+                    }}
+                    />
                   </li>
-                  ))}
+                  )
+                })}
               </ul>
             </div>
             <form onSubmit={submitForm} className="chat-message">
               <input type="text" placeholder="Ask any questions here."
               value={messageInput} onChange={e => setMessageInput(e.target.value)}
               />
-              <button className="button black">Send</button>
+              <button
+                type="button"
+                onClick={startListening}
+                className="button black"
+              >
+                {isListening ? "Listening..." : "Speak"}
+              </button>
+              <button className="button black">
+                Send
+              </button>
             </form>
           </div>
         </div>
