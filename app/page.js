@@ -33,7 +33,7 @@ export default function Home() {
     ).then(res => res.json());
 
   setMessages([...newMessages, { role: 'system', content: apiMessage.message }]);
-  }
+  };
 
   const handleStartListening = () => {
     if (isListening) {
@@ -323,7 +323,7 @@ export default function Home() {
                 onClick={handleStartListening}
                 className="button black"
               >
-                {isListening ? "Listening..." : "Speak"}
+                {isListening ? "recording" : "Speak"}
               </button>
               <button className="button black">
                 Send
