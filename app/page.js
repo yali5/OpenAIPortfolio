@@ -1,18 +1,20 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useSpeechRecognition } from './api/Listen';
 
 export default function Home() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [ messageInput, setMessageInput ] = useState('');
-
   const [messages, setMessages] = useState([
   {
     role: 'assistant',
     content: 'How can I help you learn more about Yassaha and his Resume?'
   },
   ]);
+  // Correctly destructure isListening, startListening, and stopListening
+  const { isListening, startListening, stopListening } = useSpeechRecognition(setMessageInput);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -33,45 +35,13 @@ export default function Home() {
   setMessages([...newMessages, { role: 'system', content: apiMessage.message }]);
   }
 
-  const [isListening, SetIsListening] = useState(false);
-
-  const startListening = () => {
-    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
-      alert("Speech recognition not supported in this browser. Try Chrome.");
-      return;
+  const handleStartListening = () => {
+    if (isListening) {
+      stopListening(); // Stop recognition if already listening
+    } else {
+      startListening(); // Start recognition
     }
-
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-
-    recognition.onstart = () => {
-      setIsListening(true);
-      console.log("Voice recognition started...");
-    };
-
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      setMessageInput(transcript); // Populate the message input
-      console.log("Recognized speech:", transcript);
-    };
-
-    recognition.onerror = (event) => {
-      console.error("Speech recognition error:", event.error);
-    };
-
-    recognition.onend = () => {
-      setIsListening(false);
-      console.log("Voice recognition stopped.");
-    };
-
-    recognition.start();
   };
-
-
 
   const toggleMobileMenu = () => {
     setMenuOpen(!menuOpen);
@@ -350,7 +320,7 @@ export default function Home() {
               />
               <button
                 type="button"
-                onClick={startListening}
+                onClick={handleStartListening}
                 className="button black"
               >
                 {isListening ? "Listening..." : "Speak"}
