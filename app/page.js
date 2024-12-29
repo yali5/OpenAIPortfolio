@@ -47,6 +47,7 @@ export default function Home() {
     setMenuOpen(!menuOpen);
   }
 
+
   return (
     <>
     <header>
