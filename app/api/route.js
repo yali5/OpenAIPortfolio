@@ -1,68 +1,125 @@
-import { AzureOpenAI } from 'openai';
-import { AzureKeyCredential } from '@azure/core-auth';
+import { OpenAI } from 'openai';
 import { NextResponse } from 'next/server';
 
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
-const apiKey = process.env.AZURE_OPENAI_API_KEY;
-const apiVersion = process.env.AZURE_OPENAI_APIVERSION;
-const deploymentId = process.env.AZURE_DEPLOYMENT_ID;
+const apiKey = process.env.OPENAI_API_KEY;
 const DATA_RESUME = process.env.DATA_RESUME;
 
-const apiKeyfinal = new AzureKeyCredential(apiKey);
-
 // Validate the environment variables are set
-if (!endpoint || !apiKey || !deploymentId || !apiVersion || !DATA_RESUME) {
+if (!apiKey || !DATA_RESUME) {
     throw new Error("Missing required environment variables.");
   }
 
-export async function POST(req){
+export async function POST(req) {
 
-    const { messages } = await req.json();
+    try {
+        // Parse incoming request JSON
+        const { messages } = await req.json();
 
-    // Parse incoming request JSON
-    console.log("Request JSON parsed:", messages); // Error logging sucess: JSON logged
+        if (!Array.isArray(messages) || messages.length === 0) {
+            throw new Error("The 'messages' parameter is missing or invalid.");
+        }
 
-    // Initialize the Azure OpenAI client
-    const openai = new AzureOpenAI({
-        credential: new AzureKeyCredential(apiKey),
-        endpoint: endpoint,
-        apiVersion: apiVersion,
-        deploymentId: deploymentId,
-        }); //changed client to openai, changed to credential, added apiVersion, changed endpoint, lots of changes here dependant on version, ApiKey or Token auth
+        console.log("Received messages:", messages);
 
-    console.log("Azure OpenAI client initialized:", openai); //Error logging failure. Initialisation error confirmed
-
-    // Add system-level context to the messages
-    messages.unshift({
+        // Add system-level context to the messages
+        messages.unshift({
         role: 'system',
-        content: `You are PortfolionLLM, answering only questions based on the resume provided.
-Resume: ${DATA_RESUME}
+        content: `You are PortfolionLLM, answering only questions based on the resume provided. The answers should be formattted as appropriate, the use of bullet points where appropriate is recommended.
+        Resume: ${DATA_RESUME}
+    
+        Help users learn more about Yassaha from his resume.`
+            });
 
-Help users learn more about Yassaha from his resume.`
+        // Initialize the Azure OpenAI client
+        const client = new OpenAI({
+            apiKey: apiKey,
+            }); //changed client to openai, changed credential, removed apiVersion, removed endpoint, lots of changes here dependant on version, ApiKey or Token auth
+
+        console.log("Client initialized:", client);
+
+        // Send the request to the Azure OpenAI API
+        console.log("Preparing to send API request...");
+
+        const response = await client.chat.completions.create({
+            model: "gpt-4o",
+            messages: messages,
+            temperature: 1,
+            max_tokens: 128,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0
+        })
+
+        // Check if the response contains a valid message and return it
+        if (response.choices && response.choices[0].message) {
+            const formattedResponse = formatResponse(response.choices[0].message.content);
+            console.log("Formatted Response:", formattedResponse);
+            return NextResponse.json({ message: formattedResponse });
+            return NextResponse.json({ message: response.choices[0].message.content });
+        } else {
+        throw new Error("No valid response from OpenAI.");
+        } 
+
+    } catch (err) {
+    console.error("Error during API request:", err.message);
+    return NextResponse.json({ error: err.message }, { status: 400 });
+    }
+};
+
+function formatResponse(responseText) {
+
+    // Split the response text into individual lines
+    const lines = responseText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+
+    let inBulletList = false;
+    let inNumberedList = false;
+    let formattedText = '';
+
+    lines.forEach(line => {
+        // Bullet points (lines starting with '-')
+        if (line.startsWith('- ')) {
+            if (!inBulletList) {
+                formattedText += '<ul>';  // Start unordered list
+                inBulletList = true;
+            }
+            formattedText += `<li>${line.slice(2)}</li>`;  // Add list item
+
+        // Numbered lists (lines starting with a number followed by a period)
+        } else if (/^\d+\./.test(line)) {
+            if (!inNumberedList) {
+                formattedText += '<ol>';  // Start ordered list
+                inNumberedList = true;
+            }
+            formattedText += `<li>${line}</li>`;  // Add list item
+
+        // Paragraphs (default case)
+        } else {
+            if (inBulletList) {
+                formattedText += '</ul>';
+                inBulletList = false;
+            }
+            if (inNumberedList) {
+                formattedText += '</ol>';
+                inNumberedList = false;
+            }
+
+            // Add the paragraph content
+            formattedText += `<p>${line}</p>`;
+        }
     });
 
-try {
-    console.log("Preparing to send API request..."); // Check for API call to Azure is successful. Success
-    const response = await openai.completions.create({ 
-        model: deploymentId, //This was previous mis-unserstood to mean model
-        prompt: messages.map((msg) => msg.content).join("\n"),
-        max_tokens: 128,
-    });
+    // Close any remaining open lists
+    if (inBulletList) {
+        formattedText += '</ul>';
+    }
+    if (inNumberedList) {
+        formattedText += '</ol>';
+    }
 
-    console.log("Full OpenAI Response:", response);
+    // If there are no valid lines, return an empty string
+    if (lines.length === 0) {
+        return '';
+    }
 
-    // Check if the response is valid and has a message
-    if (response && response.choices && response.choices.length > 0) {
-        console.log("AI Response:", response.choices[0].text); // Or .message depending on the structure
-    } else {
-        console.log("No choices returned in the response.");
+    return formattedText;
     }
-} catch (error) {
-    console.error("Error during API request:", error);
-    // Log additional details if available
-    if (error.response) {
-        console.error("API Response Error:", error.response.data);
-    }
-    return NextResponse.json({ error: 'Error during OpenAI request' }, { status: 500 });
-    }
-}
