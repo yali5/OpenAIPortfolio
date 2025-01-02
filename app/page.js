@@ -290,47 +290,42 @@ export default function Home() {
           Chatbot
         </h2>
         <div className="chatbot-blue">
-          <div className="chat-info">
+        <div className="chat-info">
             <h3>OpenAI Chatbot</h3>
             <p>I've put together a chatbot here which knows all my skills, work experience and has a copy of my CV/Resume. You can use it to ask questions about me to get a better idea of who I am and what I've done.</p>
             <p>You can also download my resume here if you want to take a look at it.  I'm currently looking for new opportunities so if you have a project you think I'd be a good fit for, please get in touch!</p>
             <a href="./C.V_Yassaha_August_2024.pdf" className="button black">Download Resume</a>
-          </div>
-          <div className="chat-box">
+        </div>
+        <div className="chat-box">
             <div className="scroll-area">
-              <ul id="chat-log">
-                {messages.map((message, index) => {
-                  console.log("Rendering message:", message.content);
-                  return (
-                  <li key={index} className={`${message.role}`}>
-                    <span className={`avatar ${message.role}`}>
-                    {message.role === 'user' ? 'You' : 'AI'} </span>
-                    <div className="message"
-                    dangerouslySetInnerHTML={{
-                    __html: message.content,
-                    }}
-                    />
-                  </li>
-                  )
-                })}
-              </ul>
+                <ul id="chat-log">
+                    {messages.map((message, index) => {
+                        return (
+                            <li key={index} className={`${message.role}`}>
+                                <span className={`avatar ${message.role}`}>
+                                    {message.role === 'user' ? 'You' : 'AI'}
+                                </span>
+                                <div className="message"
+                                    dangerouslySetInnerHTML={{
+                                        __html: message.content,
+                                    }}
+                                />
+                            </li>
+                        )
+                    })}
+                </ul>
             </div>
             <form onSubmit={submitForm} className="chat-message">
-              <input type="text" placeholder="Ask any questions here."
-              value={messageInput} onChange={e => setMessageInput(e.target.value)}
-              />
-              <div className="button-container">
-                <button
-                  type="button"
-                  onClick={handleStartListening}
-                  className="button black"
-                >
-                  {isListening ? "recording" : "Speak"}
-                </button>
-                <button className="button black">
-                  Send
-                </button>
-              </div>
+                <input type="text" placeholder="Ask any questions here."
+                    value={messageInput} onChange={e => setMessageInput(e.target.value)} />
+                <div className="button-container">
+                    <button type="button" onClick={handleStartListening} className="button black">
+                        {isListening ? "recording" : "Speak"}
+                    </button>
+                    <button className="button black">
+                        Send
+                    </button>
+                </div>
             </form>
           </div>
         </div>
