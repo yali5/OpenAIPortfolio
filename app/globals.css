@@ -25,6 +25,9 @@ body {
 	font-style: normal;
 	font-size: 20px;
 	padding-bottom:30px;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
 }
 
 a {
@@ -142,61 +145,15 @@ section {
 	}
 }
 
-/* Default microphone button styling */
-.microphone-button {
-	background-color: black;
-	border: none;
-	padding: 15px;
-	font-size: 16px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+/* Red circle when speaking */
+.microphone-circle {
+	width: 30px;
+	height: 30px;
+	background-color: red;
 	border-radius: 50%;
-	width: 60px;  /* Adjust size */
-	height: 60px; /* Adjust size */
-	position: relative; /* Positioning for the red circle */
-	transition: background-color 0.3s ease, transform 0.3s ease;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
+  }
   
-/* When the microphone is active (listening state) */
-.microphone-button.listening {
-	background-color: black; /* Keep the black background */
-}
-  
-/* Microphone icon when not listening */
-.microphone-icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 24px;
-	color: #fff;  /* White color for the microphone icon */
-}
-  
-/* Outer red circle */
-.outer-red-circle {
-	width: 30px; /* Outer red circle size */
-	height: 30px; /* Outer red circle size */
-	background-color: red;
-	border-radius: 50%;  /* Circular shape */
-	position: absolute;  /* Position inside the button */
-	top: 50%;   /* Center circle vertically */
-	left: 50%;  /* Center circle horizontally */
-	transform: translate(-50%, -50%);  /* Ensure exact centering */
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-  
-/* Inner red circle (smaller) */
-.inner-red-circle {
-	width: 12px; /* Inner red circle size */
-	height: 12px; /* Inner red circle size */
-	background-color: red;
-	border-radius: 50%;  /* Circular shape */
-}
-
 .button {
 	display:inline-block;
 	padding:10px 30px;
@@ -630,6 +587,7 @@ h3 {
 
 			.chat-message {
 				display:flex;
+				flex-wrap: wrap;
 				margin-top:15px;
 				gap:15px;
 				input {
@@ -654,6 +612,21 @@ h3 {
 					cursor:pointer;
 				}
 			}
+
+			.chat-message input {
+				flex: 1; /* Input takes up available space */
+				padding: 10px;
+				margin:5px;
+				min-width: 0; /* Prevents input from overflowing */
+				box-sizing: border-box;
+			  }
+			  
+			  .chat-message button {
+				padding: 10px 20px;
+				margin:5px;
+				flex-shrink: 0; /* Prevent buttons from shrinking */
+				white-space: nowrap; /* Prevent button text wrapping */
+			  }
 		}
 	}
 }

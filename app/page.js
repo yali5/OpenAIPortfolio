@@ -319,16 +319,18 @@ export default function Home() {
               <input type="text" placeholder="Ask any questions here."
               value={messageInput} onChange={e => setMessageInput(e.target.value)}
               />
-              <button
-                type="button"
-                onClick={handleStartListening}
-                className="button black"
-              >
-                {isListening ? "recording" : "Speak"}
-              </button>
-              <button className="button black">
-                Send
-              </button>
+              <div className="button-container">
+                <button
+                  type="button"
+                  onClick={handleStartListening}
+                  className="button black"
+                >
+                  {isListening ? "recording" : "Speak"}
+                </button>
+                <button className="button black">
+                  Send
+                </button>
+              </div>
             </form>
           </div>
         </div>
