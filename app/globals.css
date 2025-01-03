@@ -25,6 +25,9 @@ body {
 	font-style: normal;
 	font-size: 20px;
 	padding-bottom:30px;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
 }
 
 a {
@@ -142,61 +145,15 @@ section {
 	}
 }
 
-/* Default microphone button styling */
-.microphone-button {
-	background-color: black;
-	border: none;
-	padding: 15px;
-	font-size: 16px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+/* Red circle when speaking */
+.microphone-circle {
+	width: 30px;
+	height: 30px;
+	background-color: red;
 	border-radius: 50%;
-	width: 60px;  /* Adjust size */
-	height: 60px; /* Adjust size */
-	position: relative; /* Positioning for the red circle */
-	transition: background-color 0.3s ease, transform 0.3s ease;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
+  }
   
-/* When the microphone is active (listening state) */
-.microphone-button.listening {
-	background-color: black; /* Keep the black background */
-}
-  
-/* Microphone icon when not listening */
-.microphone-icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 24px;
-	color: #fff;  /* White color for the microphone icon */
-}
-  
-/* Outer red circle */
-.outer-red-circle {
-	width: 30px; /* Outer red circle size */
-	height: 30px; /* Outer red circle size */
-	background-color: red;
-	border-radius: 50%;  /* Circular shape */
-	position: absolute;  /* Position inside the button */
-	top: 50%;   /* Center circle vertically */
-	left: 50%;  /* Center circle horizontally */
-	transform: translate(-50%, -50%);  /* Ensure exact centering */
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-  
-/* Inner red circle (smaller) */
-.inner-red-circle {
-	width: 12px; /* Inner red circle size */
-	height: 12px; /* Inner red circle size */
-	background-color: red;
-	border-radius: 50%;  /* Circular shape */
-}
-
 .button {
 	display:inline-block;
 	padding:10px 30px;
@@ -546,114 +503,163 @@ h3 {
 }
 
 .chatbot {
-	.chat-box .message {
-		padding: 10px;
-		border-radius: 8px;
-		margin-bottom: 8px;
-		line-height: 1.5;
-	  }
-	  
-	  .chat-box .user {
-		background-color: #e5f6ff;
-		text-align: right;
-	  }
-	  
-	  .chat-box .assistant {
-		background-color: #f6f6f6;
-		text-align: left;
-	  }
-	.chatbot-blue {
-		background-color: var(--blue-100);
-		border-radius:30px;
-		padding:30px;
-		gap:30px;
-		display:flex;
-		@media (max-width:1024px){
-			flex-direction:column;
-		}
-		p {
-			margin-bottom:30px;
-		}
-		.chat-info {
-			flex:3;
-			padding-right:30px;
-		}
-		.chat-box {
-			flex:4;
-			background:white;
-			border-radius:15px;
-			padding:30px;
-			display:flex;
-			flex-direction:column;
-			.scroll-area {
-				max-height:300px;
-				height:300px;
-				overflow-y:scroll;
-				ul {
-					display:flex;
-					flex-direction:column;
-					justify-content:flex-end;
-					gap:15px;
-					li {
-						display:flex;
-						align-items:center;
-						gap:15px;
+    .chat-box .message {
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
 
-						&.user {
-							text-align:right;
-							justify-content:flex-end;
-							flex-direction:row-reverse;
-							span {
-								background-color: var(--yellow);
-							}
-						}
+    .chat-box .user {
+        background-color: #e5f6ff;
+        text-align: right;
+    }
 
-						span {
-							background-color: var(--blue-400);
-							width:64px;
-							height:64px;
-							border-radius:50%;
-							display:inline-flex;
-							align-items:center;
-							justify-content:center;
-							@media(max-width:768px){
-								width:48px;
-								height:48px;
-							}
-						}
-						div {
-							flex:1;
-						}
-					}
-				}
-			}
+    .chat-box .assistant {
+        background-color: #f6f6f6;
+        text-align: left;
+    }
+
+    .chatbot-blue {
+        background-color: var(--blue-100);
+        border-radius: 30px;
+        padding: 30px;
+        gap: 30px;
+        display: flex;
+        @media (max-width: 1024px) {
+            flex-direction: column;
+        }
+        p {
+            margin-bottom: 30px;
+        }
+        .chat-info {
+            flex: 3;
+            padding-right: 30px;
+        }
+        .chat-box {
+            flex: 4;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            .scroll-area {
+                max-height: 300px;
+                height: 300px;
+                overflow-y: scroll;
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    gap: 15px;
+                    li {
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+
+                        &.user {
+                            text-align: right;
+                            justify-content: flex-end;
+                            flex-direction: row-reverse;
+                            span {
+                                background-color: var(--yellow);
+                            }
+                        }
+
+                        span {
+                            background-color: var(--blue-400);
+                            width: 64px;
+                            height: 64px;
+                            border-radius: 50%;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            @media (max-width: 768px) {
+                                width: 48px;
+                                height: 48px;
+                            }
+                        }
+                        div {
+                            flex: 1;
+                        }
+                    }
+                }
+            }
 
 			.chat-message {
-				display:flex;
-				margin-top:15px;
-				gap:15px;
-				input {
-					border-radius:10px;
-					flex:1;
-					padding:15px;
-					border:1px solid transparent;
-					background-color: var(--base-100);
-					&:hover {
-						outline:none;
-						background-color:white;
-						border:1px solid var(--base-100);
-					}
-					&:focus {
-						outline:none;
-						background-color:white;
-						border:1px solid var(--base-100);
-					}
-				}
-				button {
-					border:none;
-					cursor:pointer;
-				}
+				display: flex;
+				flex-direction: column;
+				align-items: center; /* Center-align everything */
+				gap: 5px; /* Adjust spacing between the input and buttons */
 			}
-		}
-	}
+
+            /* Chat message input and buttons */
+            .chat-message input {
+				border-radius: 10px;
+				flex: 1;
+				padding: 10px; /* Reduced padding */
+				font-size: 14px; /* Adjust font size */
+				border: 1px solid transparent;
+				background-color: var(--base-100);
+				&::hover {
+					outline: none;
+					background-color: white;
+					border: 1px solid var(--base-100);
+				}
+			&::focus {
+				outline: none;
+				background-color: white;
+				border: 1px solid var(--base-100);
+			}
+			min-width: 200px; /* Reduced minimum width */
+			max-width: 100%; /* Ensures responsiveness */
+			margin-bottom: 10px; /* Add space below the input field */
+			}
+
+            /* Button container */
+            .button-container {
+                display: flex;
+                justify-content: flex-end;
+	            gap: 0px;
+                flex-grow: 1;
+                flex-wrap: wrap; /* Allow wrapping of buttons */
+                width: 100%; /* Ensure buttons take the full width */
+                }
+
+             /* Styling for buttons */
+             .chat-message button {
+                padding: 10px 20px;
+                margin: 5px;
+                flex-shrink: 0; /* Prevent buttons from shrinking */
+                white-space: nowrap; /* Prevent button text from wrapping */
+                }
+            }
+
+            /* Mobile View Adjustments */
+            @media (max-width: 768px) {
+                /* Stack input and buttons vertically */
+                .chat-message {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+            /* Button container styling */
+            .button-container {
+                justify-content: center;
+                width: 100%;
+            }
+
+            /* Make buttons stack vertically on mobile */
+            .chat-message button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            /* Ensure input has a minimum width */
+            .chat-message input {
+            	min-width: 250px; /* Prevent the input from getting too small */
+            	width: 100%; /* Allow it to take the full width available */
+            }
+        }
+    }
 }
