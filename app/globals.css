@@ -586,47 +586,52 @@ h3 {
                 }
             }
 
+			.chat-message {
+				display: flex;
+				flex-direction: column;
+				align-items: center; /* Center-align everything */
+				gap: 5px; /* Adjust spacing between the input and buttons */
+			}
+
             /* Chat message input and buttons */
-            .chat-message {
+            .chat-message input {
+				border-radius: 10px;
+				flex: 1;
+				padding: 10px; /* Reduced padding */
+				font-size: 14px; /* Adjust font size */
+				border: 1px solid transparent;
+				background-color: var(--base-100);
+				&::hover {
+					outline: none;
+					background-color: white;
+					border: 1px solid var(--base-100);
+				}
+			&::focus {
+				outline: none;
+				background-color: white;
+				border: 1px solid var(--base-100);
+			}
+			min-width: 200px; /* Reduced minimum width */
+			max-width: 100%; /* Ensures responsiveness */
+			margin-bottom: 10px; /* Add space below the input field */
+			}
+
+            /* Button container */
+            .button-container {
                 display: flex;
-                flex-wrap: wrap;
-                margin-top: 15px;
-                gap: 15px;
-                input {
-                    border-radius: 10px;
-                    flex: 1;
-                    padding: 15px;
-                    border: 1px solid transparent;
-                    background-color: var(--base-100);
-                    &::hover {
-                        outline: none;
-                        background-color: white;
-                        border: 1px solid var(--base-100);
-                    }
-                    &::focus {
-                        outline: none;
-                        background-color: white;
-                        border: 1px solid var(--base-100);
-                    }
-                    min-width: 250px; /* Minimum width for the input */
+                justify-content: flex-end;
+	            gap: 0px;
+                flex-grow: 1;
+                flex-wrap: wrap; /* Allow wrapping of buttons */
+                width: 100%; /* Ensure buttons take the full width */
                 }
 
-                /* Button container */
-                .button-container {
-                    display: flex;
-                    justify-content: flex-end;
-                    gap: 10px;
-                    flex-grow: 1;
-                    flex-wrap: wrap; /* Allow wrapping of buttons */
-                    width: 100%; /* Ensure buttons take the full width */
-                }
-
-                /* Styling for buttons */
-                .chat-message button {
-                    padding: 10px 20px;
-                    margin: 5px;
-                    flex-shrink: 0; /* Prevent buttons from shrinking */
-                    white-space: nowrap; /* Prevent button text from wrapping */
+             /* Styling for buttons */
+             .chat-message button {
+                padding: 10px 20px;
+                margin: 5px;
+                flex-shrink: 0; /* Prevent buttons from shrinking */
+                white-space: nowrap; /* Prevent button text from wrapping */
                 }
             }
 
@@ -638,23 +643,22 @@ h3 {
                     align-items: flex-start;
                 }
 
-                /* Button container styling */
-                .button-container {
-                    justify-content: center;
-                    width: 100%;
-                }
+            /* Button container styling */
+            .button-container {
+                justify-content: center;
+                width: 100%;
+            }
 
-                /* Make buttons stack vertically on mobile */
-                .chat-message button {
-                    width: 100%;
-                    margin-bottom: 10px;
-                }
+            /* Make buttons stack vertically on mobile */
+            .chat-message button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
 
-                /* Ensure input has a minimum width */
-                .chat-message input {
-                    min-width: 250px; /* Prevent the input from getting too small */
-                    width: 100%; /* Allow it to take the full width available */
-                }
+            /* Ensure input has a minimum width */
+            .chat-message input {
+            	min-width: 250px; /* Prevent the input from getting too small */
+            	width: 100%; /* Allow it to take the full width available */
             }
         }
     }
