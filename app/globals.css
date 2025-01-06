@@ -28,6 +28,9 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
 }
 
 a {
@@ -150,8 +153,15 @@ section {
 	width: 30px;
 	height: 30px;
 	background-color: red;
+/* Red circle when speaking */
+.microphone-circle {
+	width: 30px;
+	height: 30px;
+	background-color: red;
 	border-radius: 50%;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
   }
   
 .button {
@@ -556,7 +566,68 @@ h3 {
                         display: flex;
                         align-items: center;
                         gap: 15px;
+    .chat-box .message {
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
 
+    .chat-box .user {
+        background-color: #e5f6ff;
+        text-align: right;
+    }
+
+    .chat-box .assistant {
+        background-color: #f6f6f6;
+        text-align: left;
+    }
+
+    .chatbot-blue {
+        background-color: var(--blue-100);
+        border-radius: 30px;
+        padding: 30px;
+        gap: 30px;
+        display: flex;
+        @media (max-width: 1024px) {
+            flex-direction: column;
+        }
+        p {
+            margin-bottom: 30px;
+        }
+        .chat-info {
+            flex: 3;
+            padding-right: 30px;
+        }
+        .chat-box {
+            flex: 4;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            .scroll-area {
+                max-height: 300px;
+                height: 300px;
+                overflow-y: scroll;
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    gap: 15px;
+                    li {
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+
+                        &.user {
+                            text-align: right;
+                            justify-content: flex-end;
+                            flex-direction: row-reverse;
+                            span {
+                                background-color: var(--yellow);
+                            }
+                        }
                         &.user {
                             text-align: right;
                             justify-content: flex-end;
@@ -585,8 +656,102 @@ h3 {
                     }
                 }
             }
+                        span {
+                            background-color: var(--blue-400);
+                            width: 64px;
+                            height: 64px;
+                            border-radius: 50%;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            @media (max-width: 768px) {
+                                width: 48px;
+                                height: 48px;
+                            }
+                        }
+                        div {
+                            flex: 1;
+                        }
+                    }
+                }
+            }
 
 			.chat-message {
+				display: flex;
+				flex-direction: column;
+				align-items: center; /* Center-align everything */
+				gap: 5px; /* Adjust spacing between the input and buttons */
+			}
+
+            /* Chat message input and buttons */
+            .chat-message input {
+				border-radius: 10px;
+				flex: 1;
+				padding: 10px; /* Reduced padding */
+				font-size: 14px; /* Adjust font size */
+				border: 1px solid transparent;
+				background-color: var(--base-100);
+				&::hover {
+					outline: none;
+					background-color: white;
+					border: 1px solid var(--base-100);
+				}
+			&::focus {
+				outline: none;
+				background-color: white;
+				border: 1px solid var(--base-100);
+			}
+			min-width: 200px; /* Reduced minimum width */
+			max-width: 100%; /* Ensures responsiveness */
+			margin-bottom: 10px; /* Add space below the input field */
+			}
+
+            /* Button container */
+            .button-container {
+                display: flex;
+                justify-content: flex-end;
+	            gap: 0px;
+                flex-grow: 1;
+                flex-wrap: wrap; /* Allow wrapping of buttons */
+                width: 100%; /* Ensure buttons take the full width */
+                }
+
+             /* Styling for buttons */
+             .chat-message button {
+                padding: 10px 20px;
+                margin: 5px;
+                flex-shrink: 0; /* Prevent buttons from shrinking */
+                white-space: nowrap; /* Prevent button text from wrapping */
+                }
+            }
+
+            /* Mobile View Adjustments */
+            @media (max-width: 768px) {
+                /* Stack input and buttons vertically */
+                .chat-message {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+            /* Button container styling */
+            .button-container {
+                justify-content: center;
+                width: 100%;
+            }
+
+            /* Make buttons stack vertically on mobile */
+            .chat-message button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            /* Ensure input has a minimum width */
+            .chat-message input {
+            	min-width: 250px; /* Prevent the input from getting too small */
+            	width: 100%; /* Allow it to take the full width available */
+            }
+        }
+    }
 				display: flex;
 				flex-direction: column;
 				align-items: center; /* Center-align everything */
