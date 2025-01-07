@@ -51,6 +51,14 @@ export default function Home() {
   return (
     <>
     <header>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-D4VHWDPPJX');
+        </script>
       <a href="#" className="logo-holder">
         <div className="logo">YA</div>
         <div className="logo-text">Portfolio Website</div>
@@ -77,14 +85,6 @@ export default function Home() {
         </a>
       </nav>
     </header>
-    <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-D4VHWDPPJX');
-        </script>
     <main>
       <section className="hero container">
         <div className="hero-blue">
