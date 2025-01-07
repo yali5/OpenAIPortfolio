@@ -84,10 +84,6 @@ export default function Home() {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-D4VHWDPPJX');
-          gtag('event', 'button_click', {
-                'event_category': 'Button',
-                'event_label': 'Subscribe Now'
-              });
         </script>
     <main>
       <section className="hero container">
