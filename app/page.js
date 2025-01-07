@@ -76,7 +76,8 @@ export default function Home() {
           </svg>
         </a>
       </nav>
-      <!-- Google tag (gtag.js) -->
+    </header>
+    <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
@@ -88,7 +89,6 @@ export default function Home() {
                 'event_label': 'Subscribe Now'
               });
         </script>
-    </header>
     <main>
       <section className="hero container">
         <div className="hero-blue">
