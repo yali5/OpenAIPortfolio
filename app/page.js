@@ -76,6 +76,18 @@ export default function Home() {
           </svg>
         </a>
       </nav>
+      <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-D4VHWDPPJX');
+          gtag('event', 'button_click', {
+                'event_category': 'Button',
+                'event_label': 'Subscribe Now'
+              });
+        </script>
     </header>
     <main>
       <section className="hero container">
@@ -330,18 +342,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-D4VHWDPPJX');
-          gtag('event', 'button_click', {
-                'event_category': 'Button',
-                'event_label': 'Subscribe Now'
-              });
-        </script>
     </main>
     </>
   );
