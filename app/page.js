@@ -297,7 +297,7 @@ export default function Home() {
           </a>
         </div>
       </section>
-      <section id="Chatbot" className="chatbot container">
+      <section id="chatbot" className="chatbot container">
         <h2>
           <small>
             Talk to me
