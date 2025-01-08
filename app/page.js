@@ -51,6 +51,18 @@ export default function Home() {
   return (
     <>
     <header>
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-D4VHWDPPJX');
+            `,
+          }}
+        />
       <a href="#" className="logo-holder">
         <div className="logo">YA</div>
         <div className="logo-text">Portfolio Website</div>
@@ -67,6 +79,9 @@ export default function Home() {
             <a href="#projects">Projects</a>
           </li>
           <li>
+            <a href="#chatbot">Chatbot</a>
+          </li>
+          <li>
             <a href="mailto:yassahaali@gmail.com" className="button">Contact Me</a>
           </li>
         </ul>
@@ -77,18 +92,6 @@ export default function Home() {
         </a>
       </nav>
     </header>
-    <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-D4VHWDPPJX');
-          gtag('event', 'button_click', {
-                'event_category': 'Button',
-                'event_label': 'Subscribe Now'
-              });
-        </script>
     <main>
       <section className="hero container">
         <div className="hero-blue">
@@ -294,7 +297,7 @@ export default function Home() {
           </a>
         </div>
       </section>
-      <section className="chatbot container">
+      <section id="Chatbot" className="chatbot container">
         <h2>
           <small>
             Talk to me
