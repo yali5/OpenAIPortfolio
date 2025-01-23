@@ -67,8 +67,7 @@ export default function Home() {
     </Head>
     <header>
       <a href="#" className="logo-holder">
-        <div className="logo">YA</div>
-        <div className="logo-text">Portfolio Website</div>
+                <img src="./imgs/yassahalogo.png" alt="Yassaha" />
       </a>
       <nav>
         <ul id="menu" className={menuOpen ? "active" : ""}>
