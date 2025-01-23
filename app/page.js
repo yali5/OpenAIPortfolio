@@ -11,7 +11,7 @@ export default function Home() {
   const [messages, setMessages] = useState([
   {
     role: 'assistant',
-    content: 'How can I help you learn more about Yassaha and his Resume?'
+    content: 'How can I help you learn more about Yassaha?'
   },
   ]);
   // Correctly destructure isListening, startListening, and stopListening
