@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Head from 'next/head';
 import { useSpeechRecognition } from './api/Listen';
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
   const [messages, setMessages] = useState([
   {
     role: 'assistant',
-    content: 'How can I help you learn more about Yassaha and his Resume?'
+    content: 'How can I help you learn more about Yassaha?'
   },
   ]);
   // Correctly destructure isListening, startListening, and stopListening
@@ -50,8 +51,8 @@ export default function Home() {
 
   return (
     <>
-    <header>
-        {/* Google Analytics */}
+    <Head>
+      {/* Google Analytics */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
         <script
           dangerouslySetInnerHTML={{
@@ -63,9 +64,10 @@ export default function Home() {
             `,
           }}
         />
+    </Head>
+    <header>
       <a href="#" className="logo-holder">
-        <div className="logo">YA</div>
-        <div className="logo-text">Portfolio Website</div>
+                <img src="./imgs/yassahalogo.png" alt="Yassaha" />
       </a>
       <nav>
         <ul id="menu" className={menuOpen ? "active" : ""}>
@@ -76,7 +78,7 @@ export default function Home() {
             <a href="#skills">Skills</a>
           </li>
           <li>
-            <a href="#projects">Projects</a>
+            <a href="#charity">Charity</a>
           </li>
           <li>
             <a href="#chatbot">Chatbot</a>
@@ -100,7 +102,7 @@ export default function Home() {
               Yassaha Ali
             </h1>
             <p>
-              IT Professional having worked on Infrastructure, operations and coding in HTML, CSS and Javascript. <span> I'm interested in Project Management, web development.</span>
+              IT Professional having worked on Infrastructure, operations and coding in HTML, CSS and Javascript. This site contains my work history and charity works which largely revolve long distance running. <span> I'm interested in Project Management, web development.</span>
             </p>
             <div className="call-to-action">
               <a href="./C.V_Yassaha_August_2024.pdf" className="button black">
@@ -269,32 +271,24 @@ export default function Home() {
     </article>
   </div>
 </section>
-      <section id="projects" className="bento container">
+      <section id="charity" className="charity">
         <h2>
           <small>
-            Previous
+            Please help out
           </small>
-          Completed Projects
+          Charity
         </h2>
-        <div className="bento-grid">
-          <a href="#" className="bento-item">
-            <img src="./imgs/bento-1.jpg" alt="SSI Schaefer" title="SSI-Schaefer WAMAS" width="100%" />
-          </a>
-          <a href="#" className="bento-item">
-            <img src="./imgs/bento-2.jpg" alt="FordPass" title="FordPass" width="100%" />
-          </a>
-          <a href="#" className="bento-item">
-            <img src="./imgs/bento-3.jpg" alt="Warley" title="Multiple Office Migrations" width="100%" />
-          </a>
-          <a href="#" className="bento-item">
-            <img src="./imgs/bento-4.jpg" alt="Rally Kanban" title="Rally/Agile implmentation Telephony team" width="100%" />
-          </a>
-          <a href="#" className="bento-item">
-            <img src="./imgs/bento-5.jpg" alt="Running" title="Physical deskphone to Microsoft Teams migration 4500 Users" width="100%" />
-          </a>
-          <a href="#" className="bento-item">
-            <img src="./imgs/bento-6.jpg" alt="School" title="Physical deskphone to Microsoft Teams migration 4500 Users" width="100%" />
-          </a>
+        <div className="charity-blue">
+          <div className="charity-info">
+            <h3>Brighton Marathon 2025</h3>
+            <p>I have begun training for the Brighton marathon at the start of 2025, this is after two successful half Marathons. For the events I have been raising money for Victim Support in order to help those affected by crime. It's time to step up.</p>
+            <br></br>
+            <p>You can use the button below in order to access my just giving page</p>
+            <br></br>
+              <a href="https://www.justgiving.com/page/yassaha-ali-4" className="button black">
+                Donate
+              </a>
+          </div>
         </div>
       </section>
       <section id="chatbot" className="chatbot container">
@@ -334,10 +328,10 @@ export default function Home() {
                 <input type="text" placeholder="Ask any questions here."
                     value={messageInput} onChange={e => setMessageInput(e.target.value)} />
                 <div className="button-container">
-                    <button type="button" onClick={handleStartListening} className="button black">
+                    <button onClick={handleStartListening} className="button black desktop-only">
                         {isListening ? "recording" : "Speak"}
                     </button>
-                    <button className="button black">
+                    <button className="button send">
                         Send
                     </button>
                 </div>
