@@ -281,12 +281,13 @@ export default function Home() {
         <div className="charity-blue">
           <div className="charity-info">
             <h3>Brighton Marathon 2025</h3>
-            <p>I have begun training for the Brighton marathon at the start of 2025, this is after two successful half Marathons. For the events I have been raising money for Victim Support in order to help those affected by crime. It's time to step up</p>
+            <p>I have begun training for the Brighton marathon at the start of 2025, this is after two successful half Marathons. For the events I have been raising money for Victim Support in order to help those affected by crime. It's time to step up.</p>
             <br></br>
-            <p>Please click on the link below in order to reach my JustGiving page. </p>
+            <p>You can use the button below in order to access my just giving page</p>
             <br></br>
-            <br></br>
-            <a href="https://www.justgiving.com/page/yassaha-ali-4" className="button black">Donate Money</a>
+              <a href="https://www.justgiving.com/page/yassaha-ali-4" className="button black">
+                Donate
+              </a>
           </div>
         </div>
       </section>
@@ -327,10 +328,10 @@ export default function Home() {
                 <input type="text" placeholder="Ask any questions here."
                     value={messageInput} onChange={e => setMessageInput(e.target.value)} />
                 <div className="button-container">
-                    <button type="button" onClick={handleStartListening} className="button black">
+                    <button onClick={handleStartListening} className="button black desktop-only">
                         {isListening ? "recording" : "Speak"}
                     </button>
-                    <button className="button black">
+                    <button className="button send">
                         Send
                     </button>
                 </div>
