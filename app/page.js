@@ -51,19 +51,58 @@ export default function Home() {
 
   return (
     <>
-    <Head>
+  <Head>
+    {/* Google Tag Manager */}
+    <Script
+        id="gtm-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-WW64NGVH');
+          `,
+        }}
+      />
+
       {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-D4VHWDPPJX');
-            `,
-          }}
-        />
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXX`}
+      />
+      <Script
+        id="ga-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXX');
+          `,
+        }}
+      />
+
+      {/* Page Metadata */}
+      <title>Yassaha Ali | IT Professional & Developer</title>
+      <meta name="description" content="IT Professional skilled in Infrastructure, operations, and web development. Explore my work and charity initiatives here." />
+      <meta name="keywords" content="IT, Developer, Project Management, Web Development, JavaScript, React, Infrastructure" />
+      <meta name="author" content="Yassaha Ali" />
+
+      {/* Open Graph / Facebook Meta Tags */}
+      <meta property="og:title" content="Yassaha Ali | IT Professional & Developer" />
+      <meta property="og:description" content="IT Professional skilled in Infrastructure, operations, and web development." />
+      <meta property="og:image" content="/imgs/yassahalogo.png" />
+      <meta property="og:url" content="https://yourwebsite.com" />
+      <meta property="og:type" content="website" />
+
+      {/* Twitter Meta Tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Yassaha Ali | IT Professional & Developer" />
+      <meta name="twitter:description" content="IT Professional skilled in Infrastructure, operations, and web development." />
+      <meta name="twitter:image" content="/imgs/yassahalogo.png" />
     </Head>
     <header>
       <a href="#" className="logo-holder">
