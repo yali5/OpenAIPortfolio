@@ -141,7 +141,7 @@ export default function Home() {
               Yassaha Ali
             </h1>
             <p>
-              IT Professional having worked on Infrastructure, operations and coding in HTML, CSS and Javascript. This site contains my work history and charity works which largely revolve long distance running. <span> I'm interested in Project Management, web development.</span>
+              IT Professional having worked on Infrastructure, operations and coding in HTML, CSS and Javascript. This site contains my work history and charity works which largely revolve long distance running. <span> I'm interested in Project Management and web development.</span>
             </p>
             <div className="call-to-action">
               <a href="./C.V_Yassaha_August_2024.pdf" className="button black">
