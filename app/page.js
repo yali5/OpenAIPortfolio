@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useState } from "react";
 import Image from "next/image";
 import Head from 'next/head';
@@ -51,19 +51,25 @@ export default function Home() {
 
   return (
     <>
-    <Head>
-      {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4VHWDPPJX"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-D4VHWDPPJX');
-            `,
-          }}
-        />
+  <Head>
+      {/* Page Metadata */}
+      <title>Yassaha Ali | IT Professional & Developer</title>
+      <meta name="description" content="IT Professional skilled in Infrastructure, operations, and web development. Explore my work and charity initiatives here." />
+      <meta name="keywords" content="IT, Developer, Project Management, Web Development, JavaScript, React, Infrastructure" />
+      <meta name="author" content="Yassaha Ali" />
+
+      {/* Open Graph / Facebook Meta Tags */}
+      <meta property="og:title" content="Yassaha Ali | IT Professional & Developer" />
+      <meta property="og:description" content="IT Professional skilled in Infrastructure, operations, and web development." />
+      <meta property="og:image" content="/imgs/yassahalogo.png" />
+      <meta property="og:url" content="https://yourwebsite.com" />
+      <meta property="og:type" content="website" />
+
+      {/* Twitter Meta Tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Yassaha Ali | IT Professional & Developer" />
+      <meta name="twitter:description" content="IT Professional skilled in Infrastructure, operations, and web development." />
+      <meta name="twitter:image" content="/imgs/yassahalogo.png" />
     </Head>
     <header>
       <a href="#" className="logo-holder">
@@ -293,48 +299,59 @@ export default function Home() {
       </section>
       <section id="chatbot" className="chatbot container">
         <h2>
-          <small>
-            Talk to me
-          </small>
+          <small>Talk to me</small>
           Chatbot
         </h2>
         <div className="chatbot-blue">
-        <div className="chat-info">
+          <div className="chat-info">
             <h3>OpenAI Chatbot</h3>
-            <p>I've put together a chatbot here which knows all my skills, work experience and has a copy of my CV/Resume. You can use it to ask questions about me to get a better idea of who I am and what I've done.</p>
-            <p>You can also download my resume here if you want to take a look at it.  I'm currently looking for new opportunities so if you have a project you think I'd be a good fit for, please get in touch!</p>
+            <p>
+              I've put together a chatbot here which knows all my skills, work experience, and has a copy of my CV/Resume. 
+              You can use it to ask questions about me to get a better idea of who I am and what I've done.
+            </p>
+            <p>
+              You can also download my resume here if you want to take a look at it. I'm currently looking for new opportunities, so if you have a project you think I'd be a good fit for, please get in touch!
+            </p>
             <a href="./C.V_Yassaha_August_2024.pdf" className="button black">Download Resume</a>
-        </div>
-        <div className="chat-box">
+          </div>
+
+          <div className="chat-box">
             <div className="scroll-area">
-                <ul id="chat-log">
-                    {messages.map((message, index) => {
-                        return (
-                            <li key={index} className={`${message.role}`}>
-                                <span className={`avatar ${message.role}`}>
-                                    {message.role === 'user' ? 'You' : 'AI'}
-                                </span>
-                                <div className="message"
-                                    dangerouslySetInnerHTML={{
-                                        __html: message.content,
-                                    }}
-                                />
-                            </li>
-                        )
-                    })}
-                </ul>
+              <ul id="chat-log">
+                {messages.map((message, index) => (
+                  <li key={index} className={`${message.role}`}>
+                    <span className={`avatar ${message.role}`}>
+                      {message.role === 'user' ? 'You' : 'AI'}
+                    </span>
+                    <div
+                      className="message"
+                      dangerouslySetInnerHTML={{
+                        __html: message.content,
+                      }}
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            {/* FIXED FORM STRUCTURE */}
             <form onSubmit={submitForm} className="chat-message">
-                <input type="text" placeholder="Ask any questions here."
-                    value={messageInput} onChange={e => setMessageInput(e.target.value)} />
-                <div className="button-container">
-                    <button onClick={handleStartListening} className="button black desktop-only">
-                        {isListening ? "recording" : "Speak"}
-                    </button>
-                    <button className="button send">
-                        Send
-                    </button>
-                </div>
+              <input
+                type="text"
+                placeholder="Ask any questions here."
+                value={messageInput}
+                onChange={(e) => setMessageInput(e.target.value)}
+              />
+              <div className="button-container chatbot">
+                <button
+                  type="button"
+                  onClick={handleStartListening}
+                  className="button black desktop-only"
+                >
+                  {isListening ? "recording" : "Speak"}
+                </button>
+                <button type="submit" className="button send">Send</button>
+              </div>
             </form>
           </div>
         </div>
