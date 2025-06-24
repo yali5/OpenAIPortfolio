@@ -145,7 +145,7 @@ section {
 .button-container {
     display: flex; /* Use flexbox for alignment */
     gap: 10px; /* Add spacing between buttons */
-    justify-content: space-between; /* Align buttons to the left */
+    justify-content: flex-start; /* Align buttons to the left */
     align-items: center; /* Ensure buttons are vertically aligned */
 	
 	&.chatbot {
@@ -182,6 +182,14 @@ section {
 			background-color: var(--base-100);
 			color: var(--base);
 		}
+
+		&.send {
+		order: 2; /* Moves "Send" button below search bar */
+		margin-top: 10px; /* Adds some spacing */
+		max-width: 100%; /* Ensures it spans full width */
+		width:auto;
+	}
+	
 	}
 	&.black {
 		background-color: black;
@@ -193,13 +201,6 @@ section {
 		&.desktop-only {
 			display: inline-block; /* Visible by default */
 			max-width: 100%;
-		}
-
-		&.send {
-			order: 2; /* Moves "Send" button below search bar */
-			margin-top: 10px; /* Adds some spacing */
-			max-width: 100%; /* Ensures it spans full width */
-			width:auto;
 		}
 		
 		@media (max-width: 768px) {
@@ -549,6 +550,7 @@ h3 {
 		padding:30px;
 		gap:30px;
 		display:flex;
+		width: 100%;
 		@media (max-width:1024px){
 			flex-direction:column;
 		}
@@ -566,6 +568,7 @@ h3 {
 			padding:30px;
 			display:flex;
 			flex-direction:column;
+			width: 100%
 			.scroll-area {
 				max-height:300px;
 				height:300px;
@@ -614,12 +617,17 @@ h3 {
 				display:flex;
 				margin-top:15px;
 				gap:15px;
+				width: 100%;
+				max-width: 100%;
 				input {
-					border-radius:10px;
-					flex:1;
-					padding:15px;
-					border:0px solid transparent;
-					background-color: var(--base-100);
+						flex-grow: 1;
+						flex-shrink: 1;
+						flex-basis: 0;
+						box-sizing: border-box;
+						border-radius: 10px;
+						padding: 15px;
+						border: 1px solid transparent;
+						background-color: var(--base-100);
 					
 					&:hover {
 						outline:none;
