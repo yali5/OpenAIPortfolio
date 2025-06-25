@@ -510,6 +510,9 @@ h3 {
 			padding:30px;
 			display:flex;
 			flex-direction:column;
+			width: 100%;  /* Added in as an fix for button overflow in mobile viewports*/
+  			box-sizing: border-box; /* Added in as an fix for button overflow in mobile viewports*/
+  			overflow: hidden; /* Added in as an fix for button overflow in mobile viewports*/
 			.scroll-area {
 				max-height:300px;
 				height:300px;
@@ -578,9 +581,15 @@ h3 {
 					border:none;
 					cursor:pointer;
 				}
+				@media (min-width: 769px) {
+  					button + button {
+    				margin-left: 5px; /* Adds space only between the buttons */
+  				}
+				}
 				@media (max-width: 768px) {
-					button {
-    				margin-top: 5px;
+					button { /* Added in after intial stylesheet*/
+    				margin-top: 5px; /* Added to resolve lack of border between buttons on mobile viewports*/
+					width: 100%; /* Ensures that the send button is of the same width*/
   				}
 				}
 			}

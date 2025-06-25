@@ -321,7 +321,10 @@ export default function Home() {
                 {messages.map((message, index) => (
                   <li key={index} className={`${message.role}`}>
                     <span className={`avatar ${message.role}`}>
-                      {message.role === 'user' ? 'You' : 'AI'}
+                      <img
+                        src={message.role === 'user' ? '/imgs/user-avatar.png' : '/imgs/ai-avatar.png'} ai
+                        alt={message.role}
+                      />
                     </span>
                     <div
                       className="message"
