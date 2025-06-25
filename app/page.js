@@ -322,7 +322,7 @@ export default function Home() {
                   <li key={index} className={`${message.role}`}>
                     <span className={`avatar ${message.role}`}>
                       <img
-                        src={message.role === 'user' ? '/imgs/user-avatar.png' : '/imgs/ai-avatar.png'} ai
+                        src={message.role === 'user' ? '/imgs/user-avatar.png' : '/imgs/ai-avatar.png'} 
                         alt={message.role}
                       />
                     </span>
