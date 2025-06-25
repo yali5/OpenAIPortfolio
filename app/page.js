@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useState } from "react";
 import Image from "next/image";
 import Head from 'next/head';
@@ -52,39 +52,6 @@ export default function Home() {
   return (
     <>
   <Head>
-    {/* Google Tag Manager */}
-    <Script
-        id="gtm-script"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-WW64NGVH');
-          `,
-        }}
-      />
-
-      {/* Google Analytics */}
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXX`}
-      />
-      <Script
-        id="ga-script"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXX');
-          `,
-        }}
-      />
-
       {/* Page Metadata */}
       <title>Yassaha Ali | IT Professional & Developer</title>
       <meta name="description" content="IT Professional skilled in Infrastructure, operations, and web development. Explore my work and charity initiatives here." />
@@ -319,8 +286,8 @@ export default function Home() {
         </h2>
         <div className="charity-blue">
           <div className="charity-info">
-            <h3>Brighton Marathon 2025</h3>
-            <p>I have begun training for the Brighton marathon at the start of 2025, this is after two successful half Marathons. For the events I have been raising money for Victim Support in order to help those affected by crime. It's time to step up.</p>
+            <h3>Brighton Marathon 2026</h3>
+            <p>Until the event I'll continue to look after my health and exercise with weight lifting and running. So far I am strong and healthy.</p>
             <br></br>
             <p>You can use the button below in order to access my just giving page</p>
             <br></br>
@@ -332,48 +299,62 @@ export default function Home() {
       </section>
       <section id="chatbot" className="chatbot container">
         <h2>
-          <small>
-            Talk to me
-          </small>
+          <small>Talk to me</small>
           Chatbot
         </h2>
         <div className="chatbot-blue">
-        <div className="chat-info">
+          <div className="chat-info">
             <h3>OpenAI Chatbot</h3>
-            <p>I've put together a chatbot here which knows all my skills, work experience and has a copy of my CV/Resume. You can use it to ask questions about me to get a better idea of who I am and what I've done.</p>
-            <p>You can also download my resume here if you want to take a look at it.  I'm currently looking for new opportunities so if you have a project you think I'd be a good fit for, please get in touch!</p>
+            <p>
+              I've put together a chatbot here which knows all my skills, work experience, and has a copy of my CV/Resume. 
+              You can use it to ask questions about me to get a better idea of who I am and what I've done.
+            </p>
+            <p>
+              You can also download my resume here if you want to take a look at it. I'm currently looking for new opportunities, so if you have a project you think I'd be a good fit for, please get in touch!
+            </p>
             <a href="./C.V_Yassaha_August_2024.pdf" className="button black">Download Resume</a>
-        </div>
-        <div className="chat-box">
+          </div>
+
+          <div className="chat-box">
             <div className="scroll-area">
-                <ul id="chat-log">
-                    {messages.map((message, index) => {
-                        return (
-                            <li key={index} className={`${message.role}`}>
-                                <span className={`avatar ${message.role}`}>
-                                    {message.role === 'user' ? 'You' : 'AI'}
-                                </span>
-                                <div className="message"
-                                    dangerouslySetInnerHTML={{
-                                        __html: message.content,
-                                    }}
-                                />
-                            </li>
-                        )
-                    })}
-                </ul>
+              <ul id="chat-log">
+                {messages.map((message, index) => (
+                  <li key={index} className={`${message.role}`}>
+                    <span className={`avatar ${message.role}`}>
+                      <img
+                        src={message.role === 'user' ? '/imgs/user-avatar.png' : '/imgs/ai-avatar.png'} 
+                        alt={message.role}
+                      />
+                    </span>
+                    <div
+                      className="message"
+                      dangerouslySetInnerHTML={{
+                        __html: message.content,
+                      }}
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            {/* FIXED FORM STRUCTURE */}
             <form onSubmit={submitForm} className="chat-message">
-                <input type="text" placeholder="Ask any questions here."
-                    value={messageInput} onChange={e => setMessageInput(e.target.value)} />
-                <div className="button-container">
-                    <button onClick={handleStartListening} className="button black desktop-only">
-                        {isListening ? "recording" : "Speak"}
-                    </button>
-                    <button className="button send">
-                        Send
-                    </button>
-                </div>
+              <input
+                type="text"
+                placeholder="Ask any questions here."
+                value={messageInput}
+                onChange={(e) => setMessageInput(e.target.value)}
+              />
+              <div className="button-container chatbot">
+                <button
+                  type="button"
+                  onClick={handleStartListening}
+                  className="button black desktop-only"
+                >
+                  {isListening ? "recording" : "Speak"}
+                </button>
+                <button type="submit" className="button send">Send</button>
+              </div>
             </form>
           </div>
         </div>

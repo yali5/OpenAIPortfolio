@@ -142,28 +142,6 @@ section {
 	}
 }
 
-.button-container {
-    display: flex; /* Use flexbox for alignment */
-    gap: 10px; /* Add spacing between buttons */
-    justify-content: space-between; /* Align buttons to the left */
-    align-items: center; /* Ensure buttons are vertically aligned */
-	
-	&.chatbot {
-		width: 100%; /* Ensures it takes up full width */
-		max-width: 100%;
-		padding: 10px;
-		box-sizing: border-box;
-		flex-wrap: wrap;
-	}
-}
-
-@media (max-width: 768px) {
-	.button-container {
-		flex-direction: column; /* Stack items vertically */
-		align-items: stretch; /* Make elements take full width */
-	}
-}
-
 .button {
 	display:inline-block;
 	padding:10px 30px;
@@ -190,30 +168,8 @@ section {
 			background-color: var(--base);
 			color: var(--base-100);
 		}
-		&.desktop-only {
-			display: inline-block; /* Visible by default */
-			max-width: 100%;
-		}
-
-		&.send {
-			order: 2; /* Moves "Send" button below search bar */
-			margin-top: 10px; /* Adds some spacing */
-			max-width: 100%; /* Ensures it spans full width */
-			width:auto;
-		}
-		
-		@media (max-width: 768px) {
-			&.desktop-only {
-				display: none; /* Hidden on mobile viewports */
-				order: 2; /* Moves "Send" button below search bar */
-				margin-top: 10px; /* Adds some spacing */
-				width: 100%; /* Ensures it spans full width */
-			}
-		}
 	}
-
 }
-
 
 h1 {
 	font-size:64px;
@@ -273,7 +229,7 @@ h1 {
 		img {
 			margin-top:-60px;
 			max-width:420px;
-			margin-bottom:0px;
+			margin-bottom:-10px;
 		}
 	}
 }
@@ -349,8 +305,8 @@ h3 {
 		.left-column {
 			flex:1;
 			ul {
-       			display:flex;
-       			flex-wrap:wrap;
+				display:flex;
+				flex-wrap:wrap;
 				list-style-type: none;
 				gap:10px;
 				margin-right:100px;
@@ -530,18 +486,6 @@ h3 {
 	}
 }
 
-.charity {
-	.charity-blue {
-		background-color: var(--blue-100);
-		border-radius:30px;
-		padding:30px;
-		display:flex;
-		@media(max-width:1024px){
-			flex-direction:column;
-		}
-	}
-}
-
 .chatbot {
 	.chatbot-blue {
 		background-color: var(--blue-100);
@@ -566,6 +510,9 @@ h3 {
 			padding:30px;
 			display:flex;
 			flex-direction:column;
+			width: 100%;  /* Added in as an fix for button overflow in mobile viewports*/
+  			box-sizing: border-box; /* Added in as an fix for button overflow in mobile viewports*/
+  			overflow: hidden; /* Added in as an fix for button overflow in mobile viewports*/
 			.scroll-area {
 				max-height:300px;
 				height:300px;
@@ -577,9 +524,29 @@ h3 {
 					gap:15px;
 					li {
 						display:flex;
-						align-items:center;
+						align-items:flex-start; /* Avatar: algin icons with top of messages*/
 						gap:15px;
-
+						.avatar {
+							width: 48px;
+							height: 48px;
+							border-radius: 50%;
+							overflow: hidden;
+							flex-shrink: 0;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							margin-top: 4px; /* optional tweak */
+						.message {
+						display: flex;
+						align-items: center;
+						}
+							img {
+								width: 100%;
+								height: 100%;
+								object-fit: cover;
+								display: block;
+							}
+							}
 						&.user {
 							text-align:right;
 							justify-content:flex-end;
@@ -610,7 +577,6 @@ h3 {
 			}
 
 			.chat-message {
-				order:1;
 				display:flex;
 				margin-top:15px;
 				gap:15px;
@@ -618,9 +584,8 @@ h3 {
 					border-radius:10px;
 					flex:1;
 					padding:15px;
-					border:0px solid transparent;
+					border:1px solid transparent;
 					background-color: var(--base-100);
-					
 					&:hover {
 						outline:none;
 						background-color:white;
@@ -631,6 +596,21 @@ h3 {
 						background-color:white;
 						border:1px solid var(--base-100);
 					}
+				}
+				button {
+					border:none;
+					cursor:pointer;
+				}
+				@media (min-width: 769px) {
+  					button + button {
+    				margin-left: 5px; /* Adds space only between the buttons */
+  				}
+				}
+				@media (max-width: 768px) {
+					button { /* Added in after intial stylesheet*/
+    				margin-top: 5px; /* Added to resolve lack of border between buttons on mobile viewports*/
+					width: 100%; /* Ensures that the send button is of the same width*/
+  				}
 				}
 			}
 		}
