@@ -287,7 +287,7 @@ export default function Home() {
         <div className="charity-blue">
           <div className="charity-info">
             <h3>Brighton Marathon 2026</h3>
-            <p>Until the event I'll continue to look after my health and exercise with weight lifting and running. So far I am strong and healthy. Though you can still donate to a charity through the link below.</p>
+            <p>Until the event I'll continue to look after my health and exercise with weight lifting and running. So far I am strong and healthy.</p>
             <br></br>
             <p>You can use the button below in order to access my just giving page</p>
             <br></br>
