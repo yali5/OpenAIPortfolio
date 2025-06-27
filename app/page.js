@@ -19,9 +19,13 @@ export default function Home() {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    let newMessages = [...messages, { role: 'user', content: messageInput }]
+    const time = new Date().toLocaleTimeString([], { hour; '2-digit', minute: '2-digit'});
+
+    let newMessages = [...messages, { role: 'user', content: messageInput, timestamp: time }
+    ];
     setMessages(newMessages);
     setMessageInput('');
+
     const apiMessage = await fetch(
       '/api',
       {
@@ -33,8 +37,11 @@ export default function Home() {
       }
     ).then(res => res.json());
 
-  setMessages([...newMessages, { role: 'system', content: apiMessage.message }]);
-  };
+    const aiTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    setMessages([...newMessages,
+      { role: 'system', content: apiMessage.message, timestamp: aiTime }]);
+    };
 
   const handleStartListening = () => {
     if (isListening) {
