@@ -333,12 +333,12 @@ export default function Home() {
                         alt={message.role}
                       />
                     </span>
-                    <div
-                      className="message"
-                      dangerouslySetInnerHTML={{
-                        __html: message.content,
-                      }}
-                    />
+                      <div className="message">
+                          <div dangerouslySetInnerHTML={{ __html: message.content }} />
+                          {message.timestamp && (
+                            <div className="timestamp">{message.timestamp}</div>
+                          )}
+                      </div>
                   </li>
                 ))}
               </ul>
