@@ -19,7 +19,7 @@ export default function Home() {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    const time = new Date().toLocaleTimeString([], { hour; '2-digit', minute: '2-digit'});
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'});
 
     let newMessages = [...messages, { role: 'user', content: messageInput, timestamp: time }
     ];
@@ -338,7 +338,7 @@ export default function Home() {
                           {message.timestamp && (
                             <div className="timestamp">{message.timestamp}</div>
                           )}
-                      </div>
+                        </div>
                   </li>
                 ))}
               </ul>
