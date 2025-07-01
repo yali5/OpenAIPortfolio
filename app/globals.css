@@ -551,6 +551,7 @@ h3 {
   align-items: center;
   justify-content: center;
   margin-top: 4px;
+  margin: 0 8px;
 }
 
 /* Ensure avatar images fill their container */
@@ -586,9 +587,10 @@ h3 {
 
 .chatbot .chatbot-blue .chat-box .scroll-area ul li.user .avatar {
   order: 2;
-  margin-left: 15px;
-  margin-right: 0;
+  margin-left: 5px;
+  margin-right: 15px;
 }
+
 
 .chatbot .chatbot-blue .chat-box .scroll-area ul li.user .message {
   order: 1;
