@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Head from 'next/head';
 import { useSpeechRecognition } from './api/Listen';
+import Footer from '@/components/Footer/footer';
 
 export default function Home() {
 
@@ -19,9 +20,13 @@ export default function Home() {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    let newMessages = [...messages, { role: 'user', content: messageInput }]
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'});
+
+    let newMessages = [...messages, { role: 'user', content: messageInput, timestamp: time }
+    ];
     setMessages(newMessages);
     setMessageInput('');
+
     const apiMessage = await fetch(
       '/api',
       {
@@ -33,8 +38,11 @@ export default function Home() {
       }
     ).then(res => res.json());
 
-  setMessages([...newMessages, { role: 'system', content: apiMessage.message }]);
-  };
+    const aiTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    setMessages([...newMessages,
+      { role: 'system', content: apiMessage.message, timestamp: aiTime }]);
+    };
 
   const handleStartListening = () => {
     if (isListening) {
@@ -108,7 +116,7 @@ export default function Home() {
               Yassaha Ali
             </h1>
             <p>
-              IT Professional having worked on Infrastructure, operations and coding in HTML, CSS and Javascript. This site contains my work history and charity works which largely revolve long distance running. <span> I'm interested in Project Management and web development.</span>
+              IT Professional having worked on Infrastructure, operations and coding in HTML, CSS and Javascript. This site contains my work history and charity works. <span> I'm interested in Project Management, web development.</span>
             </p>
             <div className="call-to-action">
               <a href="./C.V_Yassaha_August_2024.pdf" className="button black">
@@ -225,7 +233,7 @@ export default function Home() {
               </div>
             </figure>
             <h3>Software Developer</h3>
-            <div>August 2018 - September 2021</div>
+            <div>August 2021 - November 2022</div>
             <p>Coding a vehicle leasing software application. The role largely comprimised of upolding agile ceremonies, and revolved around SFA authentication and end-point connections</p>
           </article>
         </div>
@@ -326,12 +334,12 @@ export default function Home() {
                         alt={message.role}
                       />
                     </span>
-                    <div
-                      className="message"
-                      dangerouslySetInnerHTML={{
-                        __html: message.content,
-                      }}
-                    />
+                      <div className="message">
+                          <div dangerouslySetInnerHTML={{ __html: message.content }} />
+                          {message.timestamp && (
+                            <div className="timestamp">{message.timestamp}</div>
+                          )}
+                        </div>
                   </li>
                 ))}
               </ul>
@@ -360,6 +368,7 @@ export default function Home() {
         </div>
       </section>
     </main>
+    <Footer />
     </>
   );
   }
