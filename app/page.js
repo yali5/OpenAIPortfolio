@@ -294,15 +294,16 @@ export default function Home() {
         </h2>
         <div className="charity-blue">
           <div className="charity-info">
-            <h3>Brighton Marathon 2026</h3>
-            <p>Until the event I'll continue to look after my health and exercise with weight lifting and running. So far I am strong and healthy.</p>
+            <h3>Mazhar Ali Foundation</h3>
+            <p>I have set up a small charity in my fathers name in order to install Solar Panels and generators in the Kashmir region.Though energy generation, the aim is to facilitate independence.
+            </p>
             <br></br>
             <p>You can use the button below in order to access my just giving page</p>
             <br></br>
               <a href="https://www.justgiving.com/page/yassaha-ali-4" className="button black">
                 Donate
               </a>
-          </div>
+         </div>
         </div>
       </section>
       <section id="chatbot" className="chatbot container">
